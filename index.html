@@ -3,368 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Gateway - M.AKBAR FAJRI</title>
+    <title>Payment Gateway</title>
     <style>
         :root {
-            --primary-dark: #0a192f;
-            --primary-medium: #112240;
-            --primary-light: #233554;
-            --accent: #64ffda;
-            --text-light: #e6f1ff;
-            --text-gray: #8892b0;
+            --primary-color: #0a1f44;
+            --secondary-color: #1e3a8a;
+            --accent-color: #3b82f6;
+            --light-color: #f8fafc;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            line-height: 1.6;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: var(--primary-medium);
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            padding: 2rem;
         }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
         }
-        
-        .hero {
-            padding: 80px 0 50px;
+
+        header {
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-dark) 100%);
+            margin-bottom: 2rem;
         }
-        
-        .hero h1 {
+
+        h1 {
             font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            color: white;
         }
-        
-        .hero p {
+
+        .subtitle {
             font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 30px;
+            opacity: 0.9;
         }
-        
-        .payment-section {
-            padding: 60px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: var(--text-light);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 10px auto;
-        }
-        
+
         .payment-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
-        
+
         .payment-card {
-            background-color: var(--primary-medium);
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--primary-light);
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .payment-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.2);
         }
-        
+
         .payment-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
-        
+
         .payment-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 1.5rem;
+            margin-right: 1rem;
+            font-weight: bold;
         }
-        
+
         .payment-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-        
-        .payment-details {
-            margin-top: 15px;
-        }
-        
-        .payment-number {
             font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--accent);
         }
-        
-        .payment-owner {
-            color: var(--text-gray);
-            font-size: 1rem;
+
+        .payment-details {
+            margin-top: 1rem;
         }
-        
+
+        .payment-number {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            word-break: break-all;
+        }
+
+        .payment-account {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
         .qris-section {
-            background-color: var(--primary-medium);
-            border-radius: 10px;
-            padding: 40px;
+            margin-top: 2rem;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 30px;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
         }
-        
+
         .qris-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--text-light);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
-        
+
         .qris-image {
             max-width: 300px;
-            border-radius: 10px;
-            margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--primary-light);
-        }
-        
-        .qris-image img {
             width: 100%;
             border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
         }
-        
-        .instructions {
-            margin-top: 40px;
-            padding: 30px;
-            background-color: var(--primary-medium);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        .qris-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto;
         }
-        
-        .instructions h3 {
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .instructions ol {
-            padding-left: 20px;
-        }
-        
-        .instructions li {
-            margin-bottom: 10px;
-            color: var(--text-gray);
-        }
-        
-        footer {
-            background-color: var(--primary-medium);
-            padding: 30px 0;
-            margin-top: auto;
-            text-align: center;
-            color: var(--text-gray);
-            border-top: 1px solid var(--primary-light);
-        }
-        
-        .copy-button {
-            background-color: var(--primary-light);
-            color: var(--text-light);
+
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 0.5rem;
             transition: background-color 0.3s;
         }
-        
-        .copy-button:hover {
-            background-color: var(--accent);
-            color: var(--primary-dark);
+
+        .copy-btn:hover {
+            background-color: #2563eb;
         }
-        
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #10b981;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
-            .payment-methods {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 1.5rem;
             }
             
-            .hero h1 {
+            h1 {
                 font-size: 2rem;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .payment-methods {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">PaymentGateway</div>
-            </div>
-        </div>
+        <h1>Payment Gateway</h1>
+        <p class="subtitle">Pilih metode pembayaran yang tersedia</p>
     </header>
     
-    <section class="hero">
-        <div class="container">
-            <h1>Metode Pembayaran</h1>
-            <p>Silakan pilih metode pembayaran yang tersedia di bawah ini untuk melanjutkan transaksi Anda.</p>
+    <div class="container">
+        <div class="payment-methods">
+            <div class="payment-card" onclick="copyToClipboard('083151041752', 'DANA')">
+                <div class="payment-header">
+                    <div class="payment-icon">D</div>
+                    <div class="payment-name">DANA</div>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-number">083151041752</div>
+                    <div class="payment-account">A/N: M.AKBAR</div>
+                    <button class="copy-btn">Salin Nomor</button>
+                </div>
+            </div>
+            
+            <div class="payment-card" onclick="copyToClipboard('083151041752', 'GOPAY')">
+                <div class="payment-header">
+                    <div class="payment-icon">G</div>
+                    <div class="payment-name">GOPAY</div>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-number">083151041752</div>
+                    <div class="payment-account">A/N: WARTI</div>
+                    <button class="copy-btn">Salin Nomor</button>
+                </div>
+            </div>
+            
+            <div class="payment-card" onclick="copyToClipboard('083151041752', 'OVO')">
+                <div class="payment-header">
+                    <div class="payment-icon">O</div>
+                    <div class="payment-name">OVO</div>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-number">083151041752</div>
+                    <div class="payment-account">A/N: WARTI</div>
+                    <button class="copy-btn">Salin Nomor</button>
+                </div>
+            </div>
+            
+            <div class="payment-card" onclick="copyToClipboard('901824018945', 'SEABANK')">
+                <div class="payment-header">
+                    <div class="payment-icon">S</div>
+                    <div class="payment-name">SEABANK</div>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-number">901824018945</div>
+                    <div class="payment-account">A/N: M.AKBAR FAJRI</div>
+                    <button class="copy-btn">Salin Nomor</button>
+                </div>
+            </div>
         </div>
-    </section>
+        
+        <div class="qris-section">
+            <h2 class="qris-title">QRIS Payment</h2>
+            <img src="https://www.dropbox.com/scl/fi/niopk3pn037r7znmwy7pn/IMG-20251021-WA0009.jpg?rlkey=yc431zaxqcyfug077jp2d7b1a&st=k3fok66g&dl=0" alt="QRIS Code" class="qris-image">
+            <p class="qris-description">Scan kode QR di atas untuk melakukan pembayaran menggunakan berbagai metode pembayaran yang mendukung QRIS.</p>
+        </div>
+    </div>
     
-    <section class="payment-section">
-        <div class="container">
-            <h2 class="section-title">Transfer Bank & E-Wallet</h2>
-            
-            <div class="payment-methods">
-                <div class="payment-card">
-                    <div class="payment-header">
-                        <div class="payment-icon">D</div>
-                        <div class="payment-name">DANA</div>
-                    </div>
-                    <div class="payment-details">
-                        <div class="payment-number">083151041752</div>
-                        <div class="payment-owner">A/N: M.AKBAR</div>
-                        <button class="copy-button" data-number="083151041752">Salin Nomor</button>
-                    </div>
-                </div>
-                
-                <div class="payment-card">
-                    <div class="payment-header">
-                        <div class="payment-icon">G</div>
-                        <div class="payment-name">GOPAY</div>
-                    </div>
-                    <div class="payment-details">
-                        <div class="payment-number">083151041752</div>
-                        <div class="payment-owner">A/N: WARTI</div>
-                        <button class="copy-button" data-number="083151041752">Salin Nomor</button>
-                    </div>
-                </div>
-                
-                <div class="payment-card">
-                    <div class="payment-header">
-                        <div class="payment-icon">O</div>
-                        <div class="payment-name">OVO</div>
-                    </div>
-                    <div class="payment-details">
-                        <div class="payment-number">083151041752</div>
-                        <div class="payment-owner">A/N: WARTI</div>
-                        <button class="copy-button" data-number="083151041752">Salin Nomor</button>
-                    </div>
-                </div>
-                
-                <div class="payment-card">
-                    <div class="payment-header">
-                        <div class="payment-icon">S</div>
-                        <div class="payment-name">SEABANK</div>
-                    </div>
-                    <div class="payment-details">
-                        <div class="payment-number">901824018945</div>
-                        <div class="payment-owner">A/N: M.AKBAR FAJRI</div>
-                        <button class="copy-button" data-number="901824018945">Salin Nomor</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="qris-section">
-                <h2 class="qris-title">QRIS Payment</h2>
-                <div class="qris-image">
-                    <img src="https://www.dropbox.com/scl/fi/niopk3pn037r7znmwy7pn/IMG-20251021-WA0009.jpg?rlkey=yc431zaxqcyfug077jp2d7b1a&st=k3fok66g&dl=1" alt="QRIS Payment">
-                </div>
-            </div>
-            
-            <div class="instructions">
-                <h3>Petunjuk Pembayaran:</h3>
-                <ol>
-                    <li>Pilih metode pembayaran yang diinginkan</li>
-                    <li>Salin nomor rekening/e-wallet dengan menekan tombol "Salin Nomor"</li>
-                    <li>Transfer sesuai dengan jumlah yang harus dibayar</li>
-                    <li>Simpan bukti transfer untuk konfirmasi</li>
-                    <li>Untuk pembayaran QRIS, scan kode QR di atas menggunakan aplikasi e-wallet atau mobile banking Anda</li>
-                </ol>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Payment Gateway - M.AKBAR FAJRI. All rights reserved.</p>
-        </div>
-    </footer>
+    <div class="notification" id="notification">Nomor berhasil disalin!</div>
     
     <script>
-        // Fungsi untuk menyalin nomor ke clipboard
-        document.querySelectorAll('.copy-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const number = this.getAttribute('data-number');
-                navigator.clipboard.writeText(number).then(() => {
-                    // Ubah teks tombol sementara
-                    const originalText = this.textContent;
-                    this.textContent = 'Tersalin!';
-                    this.style.backgroundColor = '#64ffda';
-                    this.style.color = '#0a192f';
-                    
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                        this.style.backgroundColor = '';
-                        this.style.color = '';
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Gagal menyalin teks: ', err);
-                });
+        function copyToClipboard(text, method) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification(`Nomor ${method} berhasil disalin!`);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+                showNotification('Gagal menyalin nomor');
             });
-        });
+        }
+        
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
     </script>
 </body>
 </html>
